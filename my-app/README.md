@@ -5,10 +5,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 In the project directory, you can run:
 
 ### `Penginstallan`
-cd LuckyTest
+cd LuckyTest <br>
 npm install
 
-cd my-app
+cd my-app <br>
 npm intall
 
 
