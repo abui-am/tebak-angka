@@ -48,7 +48,7 @@ scoreRoutes.route('/:id').get(function(req, res) {
     let id = req.params.id;
     Score.findById(id, function(err, score) {
         res.json(score);
-    });
+    }).turn;
 });
 
 scoreRoutes.route('/add').post(function(req, res) {

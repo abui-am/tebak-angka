@@ -17,7 +17,8 @@ class Game extends Component {
       accuracy: 0,
       turns: 1,
       name: "",
-      nameSubmited: false
+      nameSubmited: false,
+      lasttry: "Masukan 1 s/d 100"
     };
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleNumberChange = this.handleNumberChange.bind(this);
@@ -25,6 +26,8 @@ class Game extends Component {
     this.startGame = this.startGame.bind(this);
     this.onSubmitted = this.onSubmitted.bind(this);
     this.getRating = this.getRating.bind(this);
+    this.getIndicator = this.getIndicator.bind(this);
+    this.getText = this.getText.bind(this);
   }
 
   outcomeClass() {
@@ -70,7 +73,6 @@ class Game extends Component {
     this.setState(() => ({ name: names }));
   }
 
-  componentDidMount() {}
 
   startGame() {
     this.setState(() => ({
@@ -79,7 +81,8 @@ class Game extends Component {
       min: 0,
       max: 100,
       nameSubmited: false,
-      answer: Math.floor(Math.random() * (+100 - +1))
+      answer: Math.floor(Math.random() * (+100 - +1)),
+      lasttry:"Masukan 1 s/d 100"
     }));
   }
 
@@ -87,28 +90,35 @@ class Game extends Component {
     let ratings;
     const turn = this.state.turns;
     if (turn < 2) {
-      ratings = "god";
-    } else if (turn < 5) {
-      ratings = "laksek";
-    } else {
-      ratings = "ampas";
+      ratings = "DEWO GACHA";
+    } else if (turn < 4) {
+      ratings = "TANGAN KERAMAT";
+    } else if (turn < 7) {
+      ratings = "LAKSEK";
+    } else if (turn < 10) {
+      ratings = "MAYAN HOKI";
+    } else if (turn < 13) {
+      ratings = "NORMAL";
+    } else if (turn < 16) {
+      ratings = "TIDAK HOKI";
+    }  else if (turn < 20) {
+      ratings = "AMPAS";
+    }else {
+      ratings = "TANGAN SETAN";
     }
-
-    this.setState(() => ({ rating: ratings }));
+    this.setState(() => ({ rating: ratings, lasttry : this.state.guess }),()=> {this.getIndicator()});
   }
 
-  guessNumber() {
-    this.getRating();
+  getIndicator() {
     const difference = Math.abs(
       parseInt(this.state.guess) - parseInt(this.state.answer)
     );
     const acc = difference / this.state.maximum;
-    //alert(this.state.answer);
     let a = "membeku";
     if (acc <= 0.05) {
       a = "terbakar";
     }
-    if (acc <= 0.1) {
+    else if (acc <= 0.1) {
         a = "mendidih";
       } 
       else if (acc <= 0.2) {
@@ -121,6 +131,20 @@ class Game extends Component {
       a = "sangat dingin";
     }
 
+    this.setState(() => ({
+      accuracy: acc,
+      indicator : a
+    }),() => {this.getText()});
+  }
+  
+
+  guessNumber() {
+this.getRating();
+    
+  }
+
+  getText()
+  {
     const diff = this.state.guess - this.state.answer;
     let oc,
       text,
@@ -134,18 +158,17 @@ class Game extends Component {
       oc = "Lebih Kecil";
       maxs = this.state.guess;
     } else {
-      oc = "you win";
+      oc = "kau menang";
     }
 
-    if (oc !== "you win") {
-      text = oc + " : " + a;
+    if (oc !== "kau menang") {
+      text = oc + " : " + this.state.indicator;
       this.setState(() => ({
         outcome: text,
         min: mins,
         max: maxs,
         guess: "",
-        accuracy: acc,
-        indicator: a,
+
         turns: turn + 1
       }));
     } else {
@@ -153,10 +176,9 @@ class Game extends Component {
       this.setState(() => ({
         outcome: text,
         guess: ""
-      }));
+      }),() => {this.outcomeClass()});
     }
 
-    
   }
 
   onSubmitted(e) {
@@ -187,20 +209,20 @@ class Game extends Component {
   render() {
     return (
       <div className="container">
-        {this.state.outcome !== 'you win' && (
+        {this.state.outcome !== 'kau menang' && (
           <p className="turn">PERCOBAAN KE-{this.state.turns}
          </p>
         )}
 
         <div className="row">
           <div className="col-md-4 mx-auto">
-            {this.state.outcome !== "you win" && (
+            {this.state.outcome !== "kau menang" && (
               <div>
                 <div className="form-group">
                   <input
                     type="number"
                     className="form-control game-display"
-                    placeholder="Masukan 1-100"
+                    placeholder={this.state.lasttry}
                     onChange={this.handleNumberChange}
                     value={this.state.guess}
                   />
@@ -216,7 +238,7 @@ class Game extends Component {
                 </div>
               </div>
             )}
-            {this.state.outcome && this.state.outcome !== "you win" && (
+            {this.state.outcome && this.state.outcome !== "kau menang" && (
               <div className="form-group">
                 <div className="game-outcome">
                   
@@ -230,7 +252,7 @@ class Game extends Component {
                 </div>
               </div>
             )}
-            {this.state.outcome === "you win" &&
+            {this.state.outcome === "kau menang" &&
               this.state.nameSubmited === true && (
                 <div className="form-group">
                   <div className="game-outcome">
@@ -239,13 +261,13 @@ class Game extends Component {
                       className="btn btn-lg btn-success btn-block"
                       onClick={this.startGame}
                     >
-                      PLAY AGAIN
+                      MAIN LAGI
                     </button>
                   </div>
                 </div>
               )}
 
-            {this.state.outcome === "you win" &&
+            {this.state.outcome === "kau menang" &&
               this.state.nameSubmited === false && (
                 <div className="form-group">
                   <div className="form-group">
