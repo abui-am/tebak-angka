@@ -44,11 +44,19 @@ scoreRoutes.route('/').get(function(req, res) {
 });
 
 
-scoreRoutes.route('/:id').get(function(req, res) {
-    let id = req.params.id;
-    Score.findById(id, function(err, score) {
-        res.json(score);
-    }).turn;
+scoreRoutes.route('/sort').get(function(req, res) {
+    let page = parseInt(req.params.id);
+    let perpage = 10;
+    let a = (page - 1) *  10;
+    const newLocal = parseInt(a);
+    Score.find(function(err, scores) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(scores);
+        }
+    }).limit(100).sort({'turn' : 1})
+        ;
 });
 
 scoreRoutes.route('/add').post(function(req, res) {

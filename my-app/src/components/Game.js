@@ -162,7 +162,7 @@ this.getRating();
     }
 
     if (oc !== "kau menang") {
-      text = oc + " : " + this.state.indicator;
+      text = this.state.indicator + " : "+  oc ;
       this.setState(() => ({
         outcome: text,
         min: mins,
