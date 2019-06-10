@@ -2,24 +2,28 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://adjiemuliadi.github.io/tebak-angka/",
   "dependencies": {
     "axios": "^0.19.0",
     "bootstrap": "^4.3.1",
     "cors": "^2.8.5",
+    "gh-pages": "^2.0.1",
     "mongoose": "^5.5.11",
     "nodemon": "^1.19.1",
+    "proxy": "http://localhost:5000/",
     "react": "^16.8.6",
     "react-bootstrap": "^1.0.0-beta.8",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "3.0.0",
-    "proxy": "http://localhost:5000/"
+    "react-scripts": "3.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"

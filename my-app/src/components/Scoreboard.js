@@ -4,7 +4,7 @@ import Axios from "axios";
 
 const Pagelist = props => (
     (
-<button onClick={props.func}>
+<button onClick={props.func} value={props.value}>
         {props.number}
 </button>
     )
@@ -29,7 +29,7 @@ class Scoreboard extends Component {
         super(props);
         this.state = {
             scores: [],
-            page : 2,
+            page : 1,
             perpage :10,
             pages :[1,2,3,4,5,6,7,8,9,10]
         };
@@ -55,9 +55,12 @@ class Scoreboard extends Component {
     }
     
 
-    setPage= a =>{
+    setPage= e =>{
+        const a = e.target.value;
+        const s = parseInt(a);
+        // alert(a);
         this.setState({
-            page : a 
+            page : s 
         })
     }
 
@@ -76,8 +79,8 @@ class Scoreboard extends Component {
             </thead>
             <tbody>
                 { this.scoreList(this.state.page) }
-                {/* <Pagelist func={this.setPage(1)} number = {1}/>
-                <Pagelist func={this.setPage(2)} number = {2}/> */}
+                <Pagelist func={this.setPage} number = {1} value={1}/>
+                <Pagelist func={this.setPage} number = {2} value={2}/>
 
             </tbody>
         </table>
