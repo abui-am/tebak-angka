@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/tebak-angka/static/css/main.a350994a.chunk.css",
-    "main.js": "/tebak-angka/static/js/main.a4e85066.chunk.js",
-    "main.js.map": "/tebak-angka/static/js/main.a4e85066.chunk.js.map",
-    "runtime~main.js": "/tebak-angka/static/js/runtime~main.52ae5978.js",
-    "runtime~main.js.map": "/tebak-angka/static/js/runtime~main.52ae5978.js.map",
-    "static/css/2.d9a3577d.chunk.css": "/tebak-angka/static/css/2.d9a3577d.chunk.css",
-    "static/js/2.968e5f80.chunk.js": "/tebak-angka/static/js/2.968e5f80.chunk.js",
-    "static/js/2.968e5f80.chunk.js.map": "/tebak-angka/static/js/2.968e5f80.chunk.js.map",
-    "index.html": "/tebak-angka/index.html",
-    "precache-manifest.21ba30a3850df90929069d776183aa21.js": "/tebak-angka/precache-manifest.21ba30a3850df90929069d776183aa21.js",
-    "service-worker.js": "/tebak-angka/service-worker.js",
-    "static/css/2.d9a3577d.chunk.css.map": "/tebak-angka/static/css/2.d9a3577d.chunk.css.map",
-    "static/css/main.a350994a.chunk.css.map": "/tebak-angka/static/css/main.a350994a.chunk.css.map"
+    "main.css": "/static/css/main.a350994a.chunk.css",
+    "main.js": "/static/js/main.a4e85066.chunk.js",
+    "main.js.map": "/static/js/main.a4e85066.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
+    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
+    "static/css/2.d9a3577d.chunk.css": "/static/css/2.d9a3577d.chunk.css",
+    "static/js/2.968e5f80.chunk.js": "/static/js/2.968e5f80.chunk.js",
+    "static/js/2.968e5f80.chunk.js.map": "/static/js/2.968e5f80.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.72555212b8b48596fc9b83fd878310ed.js": "/precache-manifest.72555212b8b48596fc9b83fd878310ed.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.d9a3577d.chunk.css.map": "/static/css/2.d9a3577d.chunk.css.map",
+    "static/css/main.a350994a.chunk.css.map": "/static/css/main.a350994a.chunk.css.map"
   }
 }
