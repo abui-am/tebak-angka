@@ -1,3 +1,4 @@
+/* eslint-disable no-dupe-class-members */
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import "../style/game.css";
@@ -60,6 +61,17 @@ class Game extends Component {
     return "indicator--blue fa fa-thermometer-0 fa-2x";
   }
 
+  Diff() {
+    const ocs = this.state.outcome;
+    if(ocs === "ANGKA TERLALU KECIL")
+    {
+      return "fa fa-angle-double-left";
+    }
+    else
+    {
+      return "fa fa-angle-double-right";
+    }
+  }
   handleNumberChange(e) {
     const guess = e.target.value;
 
@@ -90,21 +102,21 @@ class Game extends Component {
     let ratings;
     const turn = this.state.turns;
     if (turn < 2) {
-      ratings = "DEWO GACHA";
+      ratings = "DEWA GACHA";
     } else if (turn < 4) {
-      ratings = "TANGAN KERAMAT";
-    } else if (turn < 7) {
       ratings = "LAKSEK";
+    } else if (turn < 7) {
+      ratings = "BERUNTUNG";
     } else if (turn < 10) {
-      ratings = "MAYAN HOKI";
+      ratings = "LUMAYAN";
     } else if (turn < 13) {
       ratings = "NORMAL";
     } else if (turn < 16) {
-      ratings = "TIDAK HOKI";
+      ratings = "TIDAK BERUNTUNG";
     }  else if (turn < 20) {
       ratings = "AMPAS";
     }else {
-      ratings = "TANGAN SETAN";
+      ratings = "BANYAK DOSA";
     }
     this.setState(() => ({ rating: ratings, lasttry : this.state.guess }),()=> {this.getIndicator()});
   }
@@ -152,17 +164,17 @@ this.getRating();
     let mins = this.state.min,
       maxs = this.state.max;
     if (diff < 0) {
-      oc = "Lebih Besar";
+      oc = "ANGKA TERLALU KECIL";
       mins = this.state.guess;
     } else if (diff > 0) {
-      oc = "Lebih Kecil";
+      oc = "ANGKA TERLALU BESAR";
       maxs = this.state.guess;
     } else {
       oc = "kau menang";
     }
 
     if (oc !== "kau menang") {
-      text = this.state.indicator + " : "+  oc ;
+      text =  oc ;
       this.setState(() => ({
         outcome: text,
         min: mins,
@@ -176,7 +188,7 @@ this.getRating();
       this.setState(() => ({
         outcome: text,
         guess: ""
-      }),() => {this.outcomeClass()});
+      }));
     }
 
   }
@@ -240,15 +252,25 @@ this.getRating();
             )}
             {this.state.outcome && this.state.outcome !== "kau menang" && (
               <div className="form-group">
-                <div className="game-outcome">
-                  
-                  <p>{this.state.outcome}</p>
+                <div className="game-outcome row">
+             
+                  <p className="game-hint col-sm-12">Hint : </p>
+                  <div className="col-sm-6">
                   <div className='game-icon'>
                   <i className={`${this.outcomeClass()}`} />
                    </div>   
                    <div className="game-outcome">
-                
+                   <p>{this.state.indicator}</p>
                     </div>
+                  </div>
+                  <div className="col-sm-6">
+                  <div className='game-icon'>
+                  <i className={`${this.Diff()}`} />
+                   </div>   
+                   <div className="game-outcome">
+                   <p>{this.state.outcome}</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             )}
@@ -296,16 +318,4 @@ this.getRating();
     );
   }
 }
-
-Game.defaultProps = {
-  guess: 0,
-  magicNumber: undefined
-};
-
-Game.propTypes = {
-  guess: PropTypes.number,
-  magicNumber: PropTypes.number,
-  difficulty: PropTypes.any
-};
-
 export default Game;

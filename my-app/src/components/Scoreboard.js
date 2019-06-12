@@ -81,6 +81,14 @@ class Scoreboard extends Component {
                 { this.scoreList(this.state.page) }
                 <Pagelist func={this.setPage} number = {1} value={1}/>
                 <Pagelist func={this.setPage} number = {2} value={2}/>
+                <Pagelist func={this.setPage} number = {3} value={3}/>
+                <Pagelist func={this.setPage} number = {4} value={4}/>
+                <Pagelist func={this.setPage} number = {5} value={5}/>
+                <Pagelist func={this.setPage} number = {6} value={6}/>
+                <Pagelist func={this.setPage} number = {7} value={7}/>
+                <Pagelist func={this.setPage} number = {8} value={8}/>
+                <Pagelist func={this.setPage} number = {9} value={9}/>
+                <Pagelist func={this.setPage} number = {10} value={10}/>
 
             </tbody>
         </table>
