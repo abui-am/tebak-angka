@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/tebak-angka/precache-manifest.9719bd123c2b24fa350c95ad3df7bf52.js"
+  "/tebak-angka/precache-manifest.d49aa90de40591c233126f34da56572c.js"
 );
 
 self.addEventListener('message', (event) => {
