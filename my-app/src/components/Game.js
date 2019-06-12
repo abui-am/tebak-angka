@@ -1,8 +1,8 @@
 /* eslint-disable no-dupe-class-members */
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import "../style/game.css";
 import axios from "axios";
+import Desc from './Desc';
 
 class Game extends Component {
   constructor(props) {
@@ -99,26 +99,34 @@ class Game extends Component {
   }
 
   getRating() {
-    let ratings;
+    let ratings,desc;
     const turn = this.state.turns;
     if (turn < 2) {
       ratings = "DEWA GACHA";
+      desc  = "Keberuntungan anda sedang dipuncak";
     } else if (turn < 4) {
       ratings = "LAKSEK";
+      desc  = "Keberuntungan anda sedang dipuncak";
     } else if (turn < 7) {
       ratings = "BERUNTUNG";
+      desc  = "Keberuntungan anda sedang dipuncak";
     } else if (turn < 10) {
       ratings = "LUMAYAN";
+      desc  = "Keberuntungan anda sedang dipuncak";
     } else if (turn < 13) {
       ratings = "NORMAL";
+      desc  = "Keberuntungan anda sedang dipuncak";
     } else if (turn < 16) {
       ratings = "TIDAK BERUNTUNG";
+      desc  = "Keberuntungan anda sedang dipuncak";
     }  else if (turn < 20) {
       ratings = "AMPAS";
+      desc  = "Keberuntungan anda sedang dipuncak";
     }else {
       ratings = "BANYAK DOSA";
+      desc  = "Keberuntungan anda sedang dipuncak";
     }
-    this.setState(() => ({ rating: ratings, lasttry : this.state.guess }),()=> {this.getIndicator()});
+    this.setState(() => ({ rating: ratings, lasttry : this.state.guess, description : desc }),()=> {this.getIndicator()});
   }
 
   getIndicator() {
@@ -213,7 +221,6 @@ this.getRating();
 
     this.setState({
       name: undefined,
-      rating: undefined,
       nameSubmited: true
     });
   }
@@ -278,7 +285,7 @@ this.getRating();
               this.state.nameSubmited === true && (
                 <div className="form-group">
                   <div className="game-outcome">
-                    <p>{this.state.outcome}</p>
+                    <Desc desc={this.state.description} title={this.state.rating}/>
                     <button
                       className="btn btn-lg btn-success btn-block"
                       onClick={this.startGame}

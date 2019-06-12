@@ -18,7 +18,7 @@ class Navbar extends Component {
               <Link to="/" className="nav-link">Game</Link>
             </li>
             <li className="navbar-item">
-              <Link to="/scoreboard" className="nav-link">Curriculum Vitae</Link>
+              <Link to="/scoreboard" className="nav-link">Scoreboard</Link>
             </li>
           </ul>
         </div>
