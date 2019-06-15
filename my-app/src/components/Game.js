@@ -225,6 +225,15 @@ this.getRating();
     });
   }
 
+  superior(){
+    axios.get('http://localhost:4000/scores/superior/'+this.state.turns)
+ .then(res => {
+     this.setState(() => ({superior : res.data}));
+ }) 
+ .catch(err => {console.log(err)})
+}
+
+
   render() {
     return (
       <div className="container">
@@ -285,7 +294,7 @@ this.getRating();
               this.state.nameSubmited === true && (
                 <div className="form-group">
                   <div className="game-outcome">
-                    <Desc desc={this.state.description} title={this.state.rating}/>
+                    <Desc desc={this.state.description} title={this.state.rating} turn={this.state.turns}/>
                     <button
                       className="btn btn-lg btn-success btn-block"
                       onClick={this.startGame}

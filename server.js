@@ -45,10 +45,6 @@ scoreRoutes.route('/').get(function(req, res) {
 
 
 scoreRoutes.route('/sort').get(function(req, res) {
-    let page = parseInt(req.params.id);
-    let perpage = 10;
-    let a = (page - 1) *  10;
-    const newLocal = parseInt(a);
     Score.find(function(err, scores) {
         if (err) {
             console.log(err);
@@ -58,6 +54,23 @@ scoreRoutes.route('/sort').get(function(req, res) {
     }).limit(100).sort({'turn' : 1})
         ;
 });
+
+scoreRoutes.route('/superior/:id').get(function(req, res) {
+    let page = parseInt(req.params.id);
+    Score.find().count({'turn' : {$gt : page}},(err,num) => {
+        res.json(num);
+    })
+        ;
+});
+
+scoreRoutes.route('/count').get(function(req, res) {
+    let page = parseInt(req.params.id);
+    Score.find().count((err,num) => {
+        res.json(num);
+    })
+        ;
+});
+
 
 scoreRoutes.route('/add').post(function(req, res) {
     let score = new Score(req.body);

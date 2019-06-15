@@ -25,3 +25,4 @@ backend/
 *.tar
 *.zip
 node_modules
+package-lock.json
