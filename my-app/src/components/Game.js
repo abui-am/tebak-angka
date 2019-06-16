@@ -1,4 +1,3 @@
-/* eslint-disable no-dupe-class-members */
 import React, { Component } from "react";
 import "../style/game.css";
 import axios from "axios";
@@ -78,6 +77,10 @@ class Game extends Component {
     if (!isNaN(guess)) {
       this.setState(() => ({ guess: parseInt(guess) }));
     }
+    else
+    {
+      this.setState(() => ({guess : 0}));
+    }
   }
 
   handleNameChange(e) {
@@ -96,37 +99,50 @@ class Game extends Component {
       answer: Math.floor(Math.random() * (+100 - +1)),
       lasttry:"Masukan 1 s/d 100"
     }));
+
+
   }
 
   getRating() {
     let ratings,desc;
     const turn = this.state.turns;
     if (turn < 2) {
-      ratings = "DEWA GACHA";
-      desc  = "Keberuntungan anda sedang dipuncak";
+      ratings = "PENGGARAM";
+      desc  = "Anda adalah orang yang sering menguji keberuntungan dan sukses dalamnya";
     } else if (turn < 4) {
       ratings = "LAKSEK";
-      desc  = "Keberuntungan anda sedang dipuncak";
+      desc  = "Keberuntungan anda sedang dipuncak, hati hati dengan hukum Aksi = Reaksi";
     } else if (turn < 7) {
       ratings = "BERUNTUNG";
-      desc  = "Keberuntungan anda sedang dipuncak";
+      desc  = "Anda sedang beruntung hari ini, mungkin anda bisa mendapatkan sesuatu yang bagus hari ini";
     } else if (turn < 10) {
       ratings = "LUMAYAN";
-      desc  = "Keberuntungan anda sedang dipuncak";
+      desc  = "Anda cukup beruntung, untuk 1 kali ini saja kah ?? ";
     } else if (turn < 13) {
       ratings = "NORMAL";
-      desc  = "Keberuntungan anda sedang dipuncak";
+      desc  = "Anda adalah orang normal. Mainstream. Tidak beruntung, tapi tidak sial";
     } else if (turn < 16) {
       ratings = "TIDAK BERUNTUNG";
-      desc  = "Keberuntungan anda sedang dipuncak";
+      desc  = "Anda sedikit sial, mungkin setelah mencoba lagi akan berubah";
     }  else if (turn < 20) {
       ratings = "AMPAS";
-      desc  = "Keberuntungan anda sedang dipuncak";
+      desc  = "Tak ada kata yang mendeskripsikan situasi anda selain ini, SIAL";
     }else {
       ratings = "BANYAK DOSA";
-      desc  = "Keberuntungan anda sedang dipuncak";
+      desc  = "Bersihkan diri, sucikan hati. Mungkin takdirmu ini kan berganti.";
     }
-    this.setState(() => ({ rating: ratings, lasttry : this.state.guess, description : desc }),()=> {this.getIndicator()});
+    let p;
+
+   
+    if(this.state.lasttry==null)
+    {
+      p = this.state.guess;
+    }
+    {
+       p = this.state.guess;
+    }
+    
+    this.setState(() => ({ rating: ratings, lasttry : p, description : desc }),()=> {this.getIndicator()});
   }
 
   getIndicator() {
@@ -159,25 +175,34 @@ class Game extends Component {
   
 
   guessNumber() {
-this.getRating();
+    const t = this.state.turns-1;
+    if(this.state.guess=='')
+    this.setState({'guess' : null, turns : t},this.getRating);
+    else if (this.state.lasttry=='Masukan 1 s/d 100' && this.state.guess==null)
+    this.setState({'guess' : null, turns : t},this.getRating);
+    else
+    this.getRating();
     
   }
 
   getText()
   {
     const diff = this.state.guess - this.state.answer;
-    let oc,
+    let oc,os,
       text,
       turn = parseInt(this.state.turns);
     let mins = this.state.min,
       maxs = this.state.max;
     if (diff < 0) {
       oc = "ANGKA TERLALU KECIL";
+      os = "SALAH"
       mins = this.state.guess;
     } else if (diff > 0) {
       oc = "ANGKA TERLALU BESAR";
+      os = "SALAH"
+
       maxs = this.state.guess;
-    } else {
+    } else if(diff == 0) {
       oc = "kau menang";
     }
 
@@ -188,7 +213,7 @@ this.getRating();
         min: mins,
         max: maxs,
         guess: "",
-
+        hasil: os,
         turns: turn + 1
       }));
     } else {
@@ -220,7 +245,6 @@ this.getRating();
       .then(res => console.log(res.data));
 
     this.setState({
-      name: undefined,
       nameSubmited: true
     });
   }
@@ -269,7 +293,7 @@ this.getRating();
             {this.state.outcome && this.state.outcome !== "kau menang" && (
               <div className="form-group">
                 <div className="game-outcome row">
-             
+                  <p className='game-hint'>Oops, tebakanmu belum benar</p>
                   <p className="game-hint col-sm-12">Hint : </p>
                   <div className="col-sm-6">
                   <div className='game-icon'>
@@ -294,7 +318,7 @@ this.getRating();
               this.state.nameSubmited === true && (
                 <div className="form-group">
                   <div className="game-outcome">
-                    <Desc desc={this.state.description} title={this.state.rating} turn={this.state.turns}/>
+                    <Desc desc={this.state.description} title={this.state.rating} turn={this.state.turns} name={this.state.name}/>
                     <button
                       className="btn btn-lg btn-success btn-block"
                       onClick={this.startGame}
@@ -308,6 +332,7 @@ this.getRating();
             {this.state.outcome === "kau menang" &&
               this.state.nameSubmited === false && (
                 <div className="form-group">
+                  <p>Tebakanmu benar, masukan namamu</p>
                   <div className="form-group">
                     <input
                       type="text"
@@ -318,7 +343,6 @@ this.getRating();
                     />
                   </div>
                   <div className="game-outcome">
-                    <p>{this.state.outcome}</p>
                     <button
                       className="btn btn-lg btn-success btn-block"
                       onClick={this.onSubmitted}
