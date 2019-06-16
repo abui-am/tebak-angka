@@ -4,6 +4,11 @@
     text-transform: uppercase;
 }
 
+.game-text {
+    font-size: 1rem;
+    text-align: center;
+}
+
 .game-hint {
     color : orangered;
 }

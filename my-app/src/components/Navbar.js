@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Game from "./Game";
 import Scoreboard from "./Scoreboard";
+import Tutorial from "./Tutorial";
 
 class Navbar extends Component {
   render() {
@@ -14,6 +15,9 @@ class Navbar extends Component {
 
         <div className="collpase navbar-collapse">
           <ul className="navbar-nav mr-auto">
+          <li className="navbar-item">
+              <Link to="/tutorial" className="nav-link">Tutorial</Link>
+            </li>
           <li className="navbar-item">
               <Link to="/" className="nav-link">Game</Link>
             </li>
@@ -26,6 +30,7 @@ class Navbar extends Component {
          <div className="container">
       <br/>
       <Route exact path="/" component={Game} />
+      <Route exact path="/tutorial" component={Tutorial} />
       <Route path="/scoreboard" component={Scoreboard} />
     </div>
          </div>

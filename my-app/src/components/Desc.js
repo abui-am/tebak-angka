@@ -44,10 +44,10 @@ componentDidMount()
 
 render() {
     return (
-      <div className="">
+      <div className="game-text">
         <p>Hi {this.props.name}!</p>
           <p>Keberuntunganmu : </p>
-           <p>{this.props.title}</p>
+           <p className="game-outcome">{this.props.title}</p>
         <p className="">{this.props.desc}</p>
         <p>Selamat! Anda lebih beruntung dari {this.state.superior} Orang, Keberuntungan anda diatas {this.state.percent}% orang ditempat ini! </p>
       </div>

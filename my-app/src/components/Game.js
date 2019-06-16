@@ -34,30 +34,30 @@ class Game extends Component {
     const indicator = this.state.indicator;
 
     if (!indicator || indicator === "terbakar") {
-      return "indicator--red fa fa-thermometer-0 fa-2x";
+      return "indicator--red fa fa-thermometer fa-2x";
     }
 
     else if (indicator === "mendidih") {
-      return "indicator--orangered fa fa-thermometer-0 fa-2x";
+      return "indicator--orangered fa fa-thermometer fa-2x";
     }
 
     if (indicator === "panas") {
-      return "indicator--orange fa fa-thermometer-0 fa-2x";
+      return "indicator--orange fa fa-thermometer-half fa-2x";
     }
 
     if (indicator === "hangat") {
-      return "indicator--yellow fa fa-thermometer-0 fa-2x";
+      return "indicator--yellow fa fa-thermometer-quarter fa-2x";
     }
 
     if (indicator === "dingin") {
-      return "indicator--green fa fa-thermometer-0 fa-2x";
+      return "indicator--green fa fa-thermometer-empty fa-2x";
     }
 
     if (indicator === "sangat dingin") {
-      return "indicator--cyan fa fa-thermometer-0 fa-2x";
+      return "indicator--cyan fa fa-thermometer-empty fa-2x";
     }
 
-    return "indicator--blue fa fa-thermometer-0 fa-2x";
+    return "indicator--blue fa fa-thermometer fa-2x";
   }
 
   Diff() {

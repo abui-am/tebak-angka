@@ -71,7 +71,7 @@ class Scoreboard extends Component {
         <table className="table table-striped" style={{ marginTop: 20 }} >
             <thead>
                 <tr>
-                    <th>No</th>
+                    <th style={{width : '100px'}}>No</th>
                     <th>Nama</th>
                     <th>Percobaan</th>
                     <th>Title</th>
@@ -79,7 +79,13 @@ class Scoreboard extends Component {
             </thead>
             <tbody>
                 { this.scoreList(this.state.page) }
-                <Pagelist func={this.setPage} number = {1} value={1}/>
+                
+                
+
+            </tbody>
+        </table>
+        
+                    <Pagelist func={this.setPage} number = {1} value={1}/>
                 <Pagelist func={this.setPage} number = {2} value={2}/>
                 <Pagelist func={this.setPage} number = {3} value={3}/>
                 <Pagelist func={this.setPage} number = {4} value={4}/>
@@ -89,9 +95,7 @@ class Scoreboard extends Component {
                 <Pagelist func={this.setPage} number = {8} value={8}/>
                 <Pagelist func={this.setPage} number = {9} value={9}/>
                 <Pagelist func={this.setPage} number = {10} value={10}/>
-
-            </tbody>
-        </table>
+                
     </div>
     );
   }
