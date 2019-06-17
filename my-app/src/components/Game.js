@@ -10,7 +10,7 @@ class Game extends Component {
     this.state = {
       guess: undefined,
       difficulty: props.difficulty,
-      answer: Math.floor(Math.random() * (+100 - +1)),
+      answer: Math.floor((Math.random() * 100)  + 1),
       min: 0,
       max: 100,
       maximum: 100,
@@ -28,6 +28,7 @@ class Game extends Component {
     this.getRating = this.getRating.bind(this);
     this.getIndicator = this.getIndicator.bind(this);
     this.getText = this.getText.bind(this);
+
   }
 
   outcomeClass() {
@@ -96,7 +97,7 @@ class Game extends Component {
       min: 0,
       max: 100,
       nameSubmited: false,
-      answer: Math.floor(Math.random() * (+100 - +1)),
+      answer: Math.floor((Math.random() * 100)  + 1),
       lasttry:"Masukan 1 s/d 100"
     }));
 
